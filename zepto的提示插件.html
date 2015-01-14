@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{
+	margin:0;
+	padding:0;
+	text-shadow:2px 2px 2px #ccc;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="static/qTip.css" />
+<script src="static/zepto.js"></script>
+<script src="static/qTip.js"></script>
+</head>
+<script>
+
+    /*
+     *   @desc 因为zepto的提示插件根本就没有啊, 都是jQuery的提示插件, 太坑爹了, 还要自己写;
+     *
+     *   @param tip string 要提示的内容
+     *   @param position string "top" "left" “right" "bottom" 要展示的位置
+     *   @param times int 默认显示的时间
+     *   @param distance int x轴要移动的距离, int y轴要移动的距离
+     *   @param type string "hover" or "click" 在元素hover或者是元素click的时候显示隐藏, 戳demo
+     *   @param "hoveFn" function [true, false] 在type为"hover"的时候如果hoverFn如果返回true就显示, 返回false就隐藏;
+     *   @param "clickFn" 跟上面一样, 戳demo;
+     *
+     * */
+</script>
+<body>
+<div>
+     <div id="tip" title="Some text here">
+      	 <span>for default, 默认显示2秒钟，然后消失</span>
+     </div>
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <div id="tip1" title="Some text here">
+      	 <span>hover me</span>
+     </div>
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <div id="tip2" title="Some text here">
+      	 <span>hover me</span>
+     </div>
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <div id="tip3" title="Some text here">
+      	 <span>hover me</span>
+     </div>
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <div id="tip4" title="Some text here">
+      	 <span>hover me</span>
+     </div>
+</div>
+<script>
+$(function() {
+	/*
+		默认显示两秒钟
+	*/
+	$('#tip').tip({
+		tip : "一次只能上传一种附件",
+		position : "bottom",
+		times : 2000,
+		distance : {
+			x : 0,
+			y : 40	
+		} //调整距离的说， x轴和y轴偏移的距离;
+	});
+	
+	/*
+		鼠标进来的时候显示，移动出去的时候消失
+	*/
+	$('#tip1').tip({
+		tip : "一次只能上传一种附件",
+		position : "bottom",
+		type : "hover",
+		distance : {
+			x : 0,
+			y : 40	
+		} //调整距离的说， x轴和y轴的距离;
+	});
+	
+	//鼠标click的时候显示，在click的时候消失， 重复隐藏和显示
+	$('#tip2').tip({
+		tip : "一次只能上传一种附件",
+		position : "right",
+		type : "click",
+		distance : {
+			x : 40,
+			y : 0	
+		} //调整距离的说， x轴和y轴的距离;
+	});
+	
+	//鼠标click的时候如果点击的回调click返回true就显示，回调返回false就消失
+	$('#tip3').tip({
+		tip : "一次只能上传一种附件",
+		position : "bottom",
+		type : "click",
+		clickFn : function() {
+			var result = confirm("是否显示?")
+			return result;
+		},
+		distance : {
+			x : 40,
+			y : 40	
+		} //调整距离的说， x轴和y轴的距离;
+	});
+	
+	
+	//鼠标移入的时候回调hoverFn返回ture就显示，返回false就消失;
+	$('#tip4').tip({
+		tip : "一次只能上传一种附件",
+		position : "bottom",
+		type : "hover",
+		hoverFn : function() {
+			return true;
+			return false;
+		},
+		distance : {
+			x : 0,
+			y : 40	
+		} //调整距离的说， x轴和y轴的距离;
+	});
+	
+	
+});
+</script>
+</body>
+</html>
